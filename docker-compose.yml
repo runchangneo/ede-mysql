@@ -1,0 +1,78 @@
+version: '3'
+services:
+  mysql80:
+    build:
+      context: .
+      args: 
+        MYSQL_IMAGE: mysql:${MYSQL80_VERSION}
+    container_name: mysql80
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL80_ROOT_PASSWORD}"
+      TZ: "${TZ}"
+    ports:
+      - ${MYSQL80_PORT}:3306
+    volumes:
+      - ${MYSQL80_DIR}/etc/mysql.cnf:/etc/mysql/conf.d/mysql.cnf:ro
+      - ${MYSQL80_DIR}/data:/var/lib/mysql/:rw
+    restart: ${MYSQL80_RESTART_POLICY}
+    networks:
+      - dev
+
+  mysql57:
+    build:
+      context: .
+      args: 
+        MYSQL_IMAGE: mysql:${MYSQL57_VERSION}
+    container_name: mysql57
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL57_ROOT_PASSWORD}"
+      TZ: "${TZ}"
+    ports:
+      - ${MYSQL57_PORT}:3306
+    volumes:
+      - ${MYSQL57_DIR}/etc/mysql.cnf:/etc/mysql/conf.d/mysql.cnf:ro
+      - ${MYSQL57_DIR}/data:/var/lib/mysql/:rw
+    restart: ${MYSQL57_RESTART_POLICY}
+    networks:
+      - dev
+
+
+  mysql56:
+    build:
+      context: .
+      args: 
+        MYSQL_IMAGE: mysql:${MYSQL56_VERSION}
+    container_name: mysql56
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL56_ROOT_PASSWORD}"
+      TZ: "${TZ}"
+    ports:
+      - ${MYSQL56_PORT}:3306
+    volumes:
+      - ${MYSQL56_DIR}/etc/mysql.cnf:/etc/mysql/conf.d/mysql.cnf:ro
+      - ${MYSQL56_DIR}/data:/var/lib/mysql/:rw
+    restart: ${MYSQL56_RESTART_POLICY}
+    networks:
+      - dev
+
+  mysql55:
+    build:
+      context: .
+      args: 
+        MYSQL_IMAGE: mysql:${MYSQL55_VERSION}
+    container_name: mysql55
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL55_ROOT_PASSWORD}"
+      TZ: "${TZ}"
+    ports:
+      - ${MYSQL55_PORT}:3306
+    volumes:
+      - ${MYSQL55_DIR}/etc/mysql.cnf:/etc/mysql/conf.d/mysql.cnf:ro
+      - ${MYSQL55_DIR}/data:/var/lib/mysql/:rw
+    restart: ${MYSQL55_RESTART_POLICY}
+    networks:
+      - dev
+
+networks:
+  dev:
+    external: true
